@@ -27,12 +27,12 @@ gulp.task("styles", function() {
     .pipe(sass({ outputStyle: "expand" }).on("error", notify.onError()))
     .pipe(autoprefixer(["last 10 versions"]))
     .pipe(rename({ suffix: ".min", prefix: "" }))
-    //.pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
+    //.pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // (Opt.)
     .pipe(gulp.dest("app/css"))
     .pipe(browsersync.reload({ stream: true }));
 });
 
-gulp.task("js", function() {
+gulp.task("scripts", function() {
   return (
     gulp
       .src([
@@ -40,15 +40,15 @@ gulp.task("js", function() {
         "app/js/core.js" // Always at the end
       ])
       .pipe(concat("scripts.min.js"))
-      // .pipe(uglify()) // Mifify js (opt.)
+      // .pipe(uglify()) // (Opt.)
       .pipe(gulp.dest("app/js"))
       .pipe(browsersync.reload({ stream: true }))
   );
 });
 
-gulp.task("watch", ["styles", "js", "browser-sync"], function() {
+gulp.task("watch", ["styles", "scripts", "browser-sync"], function() {
   gulp.watch("app/sass/**/*.scss", ["styles"]);
-  gulp.watch(["libs/**/*.js", "app/js/core.js"], ["js"]);
+  gulp.watch(["libs/**/*.js", "app/js/core.js"], ["scripts"]);
   gulp.watch("app/*.html", browsersync.reload);
 });
 
