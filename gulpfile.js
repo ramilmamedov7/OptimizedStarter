@@ -1,10 +1,10 @@
 var gulp = require("gulp"),
-    gutil = require("gulp-util"),
     sass = require("gulp-sass"),
     browsersync = require("browser-sync"),
     concat = require("gulp-concat"),
     uglify = require("gulp-uglify"),
     cleancss = require("gulp-clean-css"),
+    uncss = require("gulp-uncss"),
     rename = require("gulp-rename"),
     autoprefixer = require("gulp-autoprefixer"),
     notify = require("gulp-notify");
@@ -25,9 +25,10 @@ gulp.task("styles", function() {
   return gulp
     .src("app/sass/**/*.scss")
     .pipe(sass({ outputStyle: "expand" }).on("error", notify.onError()))
+    //.pipe(uncss({html: ['app/index.html', 'app/**/*.html', 'http://localhost:3000']})) // (Opt.)
+    //.pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // (Opt.)
     .pipe(autoprefixer(["last 10 versions"]))
     .pipe(rename({ suffix: ".min", prefix: "" }))
-    //.pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // (Opt.)
     .pipe(gulp.dest("app/css"))
     .pipe(browsersync.reload({ stream: true }));
 });
