@@ -1,14 +1,14 @@
-/*Fonts*/
+/* Fonts */
 @import "fonts";
 
-/*Libraries*/
+/* Libraries */
 @import "libs";
 
-//Varibles
+/* SCSS Varibles */
 $default-font: "Roboto", sans-serif;
 $accent: tomato;
 
-/*Global styles*/
+/* Global styles */
 ::placeholder {
   color: #666;
 }
@@ -54,5 +54,5 @@ textarea {
   text-align: center;
 }
 
-/*Media queries*/
+/* Media queries */
 @import "responsive";

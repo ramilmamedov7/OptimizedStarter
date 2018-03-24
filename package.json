@@ -17,8 +17,12 @@
     "gulp-notify": "^3.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-rsync": "0.0.8",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "gulp-uglify": "^3.0.0",
-    "gulp-uncss": "^1.0.6"
+    "gulp-uncss": "^1.0.6",
+    "gulp-util": "^3.0.8"
+  },
+  "dependencies": {
+    "gulp-imagemin": "^4.1.0"
   }
 }

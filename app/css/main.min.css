@@ -1,4 +1,4 @@
-/*Fonts*/
+/* Fonts */
 @font-face {
   font-family: "Roboto";
   font-weight: normal;
@@ -11,15 +11,9 @@
   font-style: normal;
   src: url("../fonts/RobotoBold/RobotoBold.woff") format("woff"), url("../fonts/RobotoBold/RobotoBold.woff2") format("woff2"); }
 
-/*Libraries*/
-/*!
- * Bootstrap v4.0.0 (https://getbootstrap.com)
- * Copyright 2011-2018 The Bootstrap Authors
- * Copyright 2011-2018 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
- */
-/*Bootsrap - Reboot*/
+/* Libraries */
+/* Bootstrap v4.0.0  */
+/* Bootsrap - Reboot (Normalize.css) */
 *,
 *::before,
 *::after {
@@ -51,7 +45,7 @@ body {
   font: inherit;
   -webkit-appearance: button; }
 
-/*Bootsrap - Grid*/
+/* Bootsrap - Grid */
 @-ms-viewport {
   width: device-width; }
 
@@ -110,7 +104,8 @@ html {
           flex: 0 0 50%;
   max-width: 50%; }
 
-/*Global styles*/
+/* SCSS Varibles */
+/* Global styles */
 ::-webkit-input-placeholder {
   color: #666; }
 ::-moz-placeholder {
@@ -142,7 +137,7 @@ body {
   font-family: "Roboto", sans-serif;
   overflow-x: hidden; }
 
-/*Media queries*/
+/* Media queries */
 /* Large Devices, Wide Screens */
 /* Medium Devices, Desktops */
 /* Small Devices, Tablets */
