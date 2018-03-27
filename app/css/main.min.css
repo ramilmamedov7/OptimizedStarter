@@ -26,7 +26,10 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -ms-overflow-style: scrollbar; }
 
 @-ms-viewport {
   width: device-width; }
@@ -48,17 +51,6 @@ body {
 /* Bootsrap - Grid */
 @-ms-viewport {
   width: device-width; }
-
-html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -ms-overflow-style: scrollbar; }
-
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit; }
 
 .container {
   width: 100%;
@@ -104,7 +96,6 @@ html {
           flex: 0 0 50%;
   max-width: 50%; }
 
-/* SCSS Varibles */
 /* Global styles */
 ::-webkit-input-placeholder {
   color: #666; }
@@ -125,17 +116,9 @@ html {
   background-color: tomato;
   color: #fff; }
 
-html,
 body {
-  height: 100%; }
-
-body {
-  font-size: 16px;
-  min-width: 320px;
-  position: relative;
-  line-height: 1.65;
   font-family: "Roboto", sans-serif;
-  overflow-x: hidden; }
+  background-color: tomato; }
 
 /* Media queries */
 /* Large Devices, Wide Screens */

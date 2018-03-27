@@ -4,9 +4,9 @@
 /* Libraries */
 @import "libs";
 
-/* SCSS Varibles */
-$default-font: "Roboto", sans-serif;
-$accent: tomato;
+// SCSS Varibles
+$main-font: "Roboto", sans-serif;
+$main-color: tomato;
 
 /* Global styles */
 ::placeholder {
@@ -14,22 +14,13 @@ $accent: tomato;
 }
 
 ::selection {
-  background-color: $accent;
+  background-color: $main-color;
   color: #fff;
 }
 
-html,
 body {
-  height: 100%;
-}
-
-body {
-  font-size: 16px;
-  min-width: 320px;
-  position: relative;
-  line-height: 1.65;
-  font-family: $default-font;
-  overflow-x: hidden;
+  font-family: $main-font;
+  background-color: $main-color;
 }
 
 input,

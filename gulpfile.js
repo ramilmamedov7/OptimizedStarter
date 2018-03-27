@@ -10,6 +10,7 @@ const gulp = require("gulp"),
       rename = require("gulp-rename"),
       notify = require("gulp-notify");
 
+//Live Server
 gulp.task("browser-sync", () => {
   browsersync({
     server: {
@@ -22,6 +23,7 @@ gulp.task("browser-sync", () => {
   });
 });
 
+//Task for styles
 gulp.task("styles", () => {
   return (
     gulp
@@ -36,6 +38,7 @@ gulp.task("styles", () => {
   );
 });
 
+//Task for images
 gulp.task("images", () => {
   gulp
     .src("app/img/*")
@@ -43,6 +46,7 @@ gulp.task("images", () => {
     .pipe(gulp.dest("app/img"));
 });
 
+//Task for scripts
 gulp.task("scripts", () => {
   return (
     gulp
@@ -57,6 +61,7 @@ gulp.task("scripts", () => {
   );
 });
 
+//Watch
 gulp.task("watch", ["styles", "images", "scripts", "browser-sync"], () => {
   gulp.watch("app/sass/**/*.scss", ["styles"]);
   gulp.watch(["libs/**/*.js", "app/js/core.js"], ["scripts"]);

@@ -2,17 +2,6 @@
   @-ms-viewport { width: device-width; } // stylelint-disable-line at-rule-no-vendor-prefix
 }
 
-html {
-  box-sizing: border-box;
-  -ms-overflow-style: scrollbar;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
 @import "mixins/breakpoints";
 @import "mixins/grid-framework";
 @import "mixins/grid";
