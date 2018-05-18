@@ -20,18 +20,18 @@ $shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 body {
-    background-color: #f2f2f2;
+    background-color: #333;
 }
 
 input,
 textarea {
-    border: $main-grey 1px solid;
+    border: $main-black 1px solid;
     outline: none;
     &:focus:required:invalid {
         border-color: $main-black;
     }
     &:required:valid {
-        border-color: $secondary-cream;
+        border-color: $main-white;
     }
 }
 
