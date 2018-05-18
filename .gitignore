@@ -1,6 +1,7 @@
+/**/package-lock.json
+/**/yarn.lock
+/**/Thumbs.db
+/**/*.DS_Store
 /node_modules/
 /dist/
 /.git/
-/**/package-lock.json
-/**/Thumbs.db
-/**/*.DS_Store

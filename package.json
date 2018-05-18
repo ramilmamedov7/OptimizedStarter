@@ -1,10 +1,11 @@
 {
-  "name": "optimizedStarter",
-  "version": "1.0.1",
-  "description": "Optimized Starter based on Gulp & Bootstrap 4",
+  "name": "OptimizedStarter",
+  "version": "2.0.0",
+  "description": "Optimized Starter based on jQuery & Bootstrap-4, Swiper, Gulp.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently --kill-others \"npm i\" \"npm run dev\"",
+    "dev": "gulp"
   },
   "author": "Ramil Mamedov",
   "license": "MIT",
@@ -23,6 +24,7 @@
     "gulp-util": "^3.0.8"
   },
   "dependencies": {
+    "concurrently": "^3.5.1",
     "gulp-imagemin": "^4.1.0"
   }
 }

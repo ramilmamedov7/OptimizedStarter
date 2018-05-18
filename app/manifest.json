@@ -4,8 +4,7 @@
   "name": "",
   "description": "",
   "short_name": "",
-  "icons": [
-    {
+  "icons": [{
       "src": "img/favicon/favicon.ico",
       "sizes": "64x64",
       "type": "image/x-icon"

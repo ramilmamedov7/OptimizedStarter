@@ -1,49 +1,44 @@
-/* Fonts */
+// SCSS Varibles
+//
+// Fonts
+$main-font: "Roboto",
+sans-serif;
+//
+// Colors
+$main-white: #fff;
+$main-black: #000;
+$secondary-black: #333;
+//
+// Utilites
+$transparent: rgba(0, 0, 0, 0);
+$shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.1);
+
+/* ===== Fonts ===== */
 @import "fonts";
 
-/* Libraries */
+/* ===== Libraries  ===== */
 @import "libs";
 
-// SCSS Varibles
-$main-font: "Roboto", sans-serif;
-$main-color: tomato;
+/* ===== Global Styles ===== */
+@import 'global';
 
-/* Global styles */
-::placeholder {
-  color: #666;
-}
+/*=============================================
+               =   Header   =
+=============================================*/
 
-::selection {
-  background-color: $main-color;
-  color: #fff;
-}
+.header {}
 
-body {
-  font-family: $main-font;
-  background-color: $main-color;
-}
+/*=============================================
+               =   Section   =
+=============================================*/
 
-input,
-textarea {
-  border: #666 1px solid;
-  outline: none;
-  &:focus:required:invalid {
-    border-color: red;
-  }
-  &:required:valid {
-    border-color: green;
-  }
-}
+.section {}
 
-.img-responsive {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+/*=============================================
+               =   Section   =
+=============================================*/
 
-.text-center {
-  text-align: center;
-}
+.footer {}
 
-/* Media queries */
+/* ===== Media Queries ===== */
 @import "responsive";

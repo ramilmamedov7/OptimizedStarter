@@ -1,0 +1,46 @@
+// SCSS Varibles
+// Fonts
+$main-font: "Roboto", sans-serif;
+// Colors
+$main-white: #fff;
+$main-black: #000;
+$secondary-black: #333;
+// Utilites
+$transparent: rgba(0, 0, 0, 0);
+$shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.1);
+
+::placeholder {
+    font-size: 18px;
+    color: $main-black;
+}
+
+::selection {
+    background-color: $main-black;
+    color: $main-white;
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+input,
+textarea {
+    border: $main-grey 1px solid;
+    outline: none;
+    &:focus:required:invalid {
+        border-color: $main-black;
+    }
+    &:required:valid {
+        border-color: $secondary-cream;
+    }
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.text-center {
+    text-align: center;
+}

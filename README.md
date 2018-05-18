@@ -1,11 +1,50 @@
-## Optimized Starter based on Gulp & Bootstrap 4
-
 ## Install 😊
-```sh
+
+```
+
 $ git clone https://github.com/Rommel7/OptimizedStarter.git
-$ npm i 
+
 ```
-***or***
+
+### Required engines
+
 ```
-$ yarn
+
+▪ Node [npm]
+
+▪ Yarn
+
+▪ Gulp
+
 ```
+
+### Commands for production
+
+**1. To install required dependecies:**
+
+```
+
+$ npm install or just npm i
+
+$ yarn install or just yarn
+
+```
+**2. To watch, concat and minify files:**
+
+```
+
+$ gulp
+
+```
+
+### Used Gulp Plugins:
+ - browser-sync
+ - gulp-sass
+ - gulp-autoprefixer
+ - gulp-clean-css
+ - gulp-uncss
+ - gulp-imagemin
+ - gulp-concat
+ - gulp-uglify
+ - gulp-rename
+ - gulp-notify
