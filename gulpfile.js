@@ -1,10 +1,14 @@
 const gulp = require('gulp'),
       browsersync = require('browser-sync'),
       sass = require('gulp-sass'),
+      uncss = require('gulp-uncss'),
+      purify = require("gulp-purify-css"),
+      cssnano = require('gulp-cssnano'),
       autoprefixer = require('gulp-autoprefixer'),
       cleancss = require('gulp-clean-css'),
-      uncss = require('gulp-uncss'),
       imagemin = require('gulp-imagemin'),
+      htmlmin = require('gulp-htmlmin');
+      babel = require('gulp-babel'),
       concat = require('gulp-concat'),
       uglify = require('gulp-uglify'),
       rename = require('gulp-rename'),
@@ -23,19 +27,11 @@ gulp.task('browser-sync', () => {
   });
 });
 
-//Task for styles
-gulp.task('styles', () => {
-  return (
-    gulp
-      .src('app/sass/**/*.scss')
-      .pipe(sass({ outputStyle: 'expand' }).on('error', notify.onError()))
-      .pipe(uncss({html: ['app/index.html', 'app/**/*.html', 'http://localhost:3000']})) // (Opt.)
-      .pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // (Opt.)
-      .pipe(autoprefixer(['last 10 versions']))
-      .pipe(rename({ suffix: '.min', prefix: '' }))
-      .pipe(gulp.dest('app/css'))
-      .pipe(browsersync.reload({ stream: true }))
-  );
+// HTML Minify
+gulp.task('minify', () => {
+  return gulp.src('app/**.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('app'));
 });
 
 //Task for images
@@ -44,6 +40,32 @@ gulp.task('images', () => {
     .src('app/img/*')
     .pipe(imagemin())
     .pipe(gulp.dest('app/img'));
+});
+
+// Babel
+gulp.task('es6', () => {
+  return gulp
+  .src('app/js/init.js')
+  .pipe(babel({presets: ['env']}))
+  .pipe(rename('core.js'))
+  .pipe(gulp.dest('app/js/'))
+})
+
+//Task for styles
+gulp.task('styles', () => {
+  return (
+    gulp
+      .src('app/sass/**/*.scss')
+      .pipe(sass({ outputStyle: 'expand' }).on('error', notify.onError()))
+      .pipe(uncss({html: ['app/**.html', 'http://localhost:3000']})) // (Opt.)
+      .pipe(purify(['app/**/*.js', 'app/**/*.html']))
+      .pipe(cssnano())
+      .pipe(autoprefixer(['last 5 versions']))
+      .pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // (Opt.)
+      .pipe(rename({ suffix: '.min', prefix: '' }))
+      .pipe(gulp.dest('app/css'))
+      .pipe(browsersync.reload({ stream: true }))
+  );
 });
 
 //Task for scripts

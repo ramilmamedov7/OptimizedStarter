@@ -40,10 +40,14 @@ $ gulp
 ### Used Gulp Plugins:
  - browser-sync
  - gulp-sass
+ - gulp-uncss
+ - gulp-purify-css
+ - gulp-cssnano
  - gulp-autoprefixer
  - gulp-clean-css
- - gulp-uncss
+ - gulp-htmlmin
  - gulp-imagemin
+ - gulp-babel
  - gulp-concat
  - gulp-uglify
  - gulp-rename
