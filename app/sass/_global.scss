@@ -1,46 +1,103 @@
-// SCSS Varibles
-// Fonts
-$main-font: "Roboto", sans-serif;
-// Colors
-$main-white: #fff;
-$main-black: #000;
-$secondary-black: #333;
-// Utilites
-$transparent: rgba(0, 0, 0, 0);
-$shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.1);
-
-::placeholder {
-    font-size: 18px;
-    color: $main-black;
+@import "vars";
+@import "mixins";
+//
+// Normalization and Global styling
+//
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-::selection {
-    background-color: $main-black;
-    color: $main-white;
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: $transparent;
 }
 
+// Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+//
+// Body
+//
 body {
-    background-color: #333;
+    margin: 0;
+    font-family: $font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $black;
+    text-align: left;
+    background-color: $white;
 }
 
+//
+// Typography
+//
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+//
+// Links
+//
+a {
+    color: $black;
+    text-decoration: none;
+    background-color: transparent; // Remove the gray background on active links in IE 10.
+    -webkit-text-decoration-skip: objects; // Remove gaps in links underline in iOS 8+ and Safari 8+.
+    &:hover {
+        color: $white;
+        text-decoration: underline; // Default
+    }
+}
+
+//
+// Forms
+//
 input,
 textarea {
-    border: $main-black 1px solid;
     outline: none;
-    &:focus:required:invalid {
-        border-color: $main-black;
-    }
-    &:required:valid {
-        border-color: $main-white;
+}
+
+//
+// Remove the default `border-radius` that macOS Chrome adds.
+button {
+    border-radius: 0;
+    &:focus,
+    .navbar-toggler-icon {
+        outline: 1px dotted; // Work around a Firefox/IE bug where the transparent `button` background
+        outline: 5px auto; // results in a loss of the default `button` focus styles.
     }
 }
 
-.img-responsive {
-    display: block;
-    max-width: 100%;
-    height: auto;
+//
+// Placeholder with autoprefixs...
+@include placeholder {
+    color: $black;
 }
 
-.text-center {
-    text-align: center;
+//
+// Selection with autoprefixs...
+@include selection {
+    color: $white;
+    background-color: $black
 }

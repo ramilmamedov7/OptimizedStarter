@@ -1,12 +1,10 @@
 // stylelint-disable at-rule-no-vendor-prefix, declaration-no-important, selector-no-qualifying-type, property-no-vendor-prefix
-
 // Reboot
 //
 // Normalization of HTML elements, manually forked from Normalize.css to remove
 // styles targeting irrelevant browsers while applying new styles.
 //
 // Normalize is licensed MIT. https://github.com/necolas/normalize.css
-
 // Document
 //
 // 1. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
@@ -16,7 +14,6 @@
 // 5. Setting @viewport causes scrollbars to overlap content in IE11 and Edge, so
 //    we force a non-overlapping, non-auto-hiding scrollbar to counteract.
 // 6. Change the default tap highlight to be completely transparent in iOS.
-
 *,
 *::before,
 *::after {
@@ -29,9 +26,7 @@ html {
   -webkit-text-size-adjust: 100%; // 4
   -ms-text-size-adjust: 100%; // 4
   -ms-overflow-style: scrollbar; // 5
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 6
-  box-sizing: border-box;
-  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba($black, 0); // 6
 }
 
 // IE10+ doesn't honor `<meta name="viewport">` in some cases.
@@ -56,15 +51,14 @@ nav,
 section {
   display: block;
 }
-// stylelint-enable selector-list-comma-newline-after
 
+// stylelint-enable selector-list-comma-newline-after
 // Body
 //
 // 1. Remove the margin in all browsers.
 // 2. As a best practice, apply a default `background-color`.
 // 3. Set an explicit initial text-align value so that we can later use the
 //    the `inherit` value on things like `<th>` elements.
-
 body {
   margin: 0; // 1
   font-family: $font-family-base;
@@ -89,7 +83,6 @@ body {
 //
 // 1. Add the correct box sizing in Firefox.
 // 2. Show the overflow in Edge and IE.
-
 hr {
   box-sizing: content-box; // 1
   height: 0; // 1
@@ -99,7 +92,6 @@ hr {
 //
 // Typography
 //
-
 // Remove top margins from headings
 //
 // By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
@@ -114,8 +106,8 @@ h6 {
   margin-top: 0;
   margin-bottom: $headings-margin-bottom;
 }
-// stylelint-enable selector-list-comma-newline-after
 
+// stylelint-enable selector-list-comma-newline-after
 // Reset margins on paragraphs
 //
 // Similarly, the top margin on `<p>`s get reset. However, we also reset the
@@ -131,7 +123,6 @@ p {
 // 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
 // 3. Add explicit cursor to indicate changed behavior.
 // 4. Duplicate behavior to the data-* attribute for our tooltip plugin
-
 abbr[title],
 abbr[data-original-title] {
   // 4
@@ -183,8 +174,8 @@ b,
 strong {
   font-weight: bolder; // Add the correct font weight in Chrome, Edge, and Safari
 }
-// stylelint-enable font-weight-notation
 
+// stylelint-enable font-weight-notation
 small {
   font-size: 80%; // Add the correct font size in all browsers
 }
@@ -193,7 +184,6 @@ small {
 // Prevent `sub` and `sup` elements from affecting the line height in
 // all browsers.
 //
-
 sub,
 sup {
   position: relative;
@@ -205,6 +195,7 @@ sup {
 sub {
   bottom: -0.25em;
 }
+
 sup {
   top: -0.5em;
 }
@@ -212,13 +203,11 @@ sup {
 //
 // Links
 //
-
 a {
   color: $link-color;
   text-decoration: $link-decoration;
   background-color: transparent; // Remove the gray background on active links in IE 10.
   -webkit-text-decoration-skip: objects; // Remove gaps in links underline in iOS 8+ and Safari 8+.
-
   @include hover {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
@@ -230,16 +219,13 @@ a {
 // It would be more straightforward to just use a[href] in previous block, but that
 // causes specificity issues in many other styles that are too complex to fix.
 // See https://github.com/twbs/bootstrap/issues/19402
-
 a:not([href]):not([tabindex]) {
   color: inherit;
   text-decoration: none;
-
   @include hover-focus {
     color: inherit;
     text-decoration: none;
   }
-
   &:focus {
     outline: 0;
   }
@@ -248,7 +234,6 @@ a:not([href]):not([tabindex]) {
 //
 // Code
 //
-
 // stylelint-disable font-family-no-duplicate-names
 pre,
 code,
@@ -257,16 +242,13 @@ samp {
   font-family: monospace, monospace; // Correct the inheritance and scaling of font size in all browsers.
   font-size: 1em; // Correct the odd `em` font sizing in all browsers.
 }
-// stylelint-enable font-family-no-duplicate-names
 
+// stylelint-enable font-family-no-duplicate-names
 pre {
   // Remove browser default top margin
-  margin-top: 0;
-  // Reset browser default of `1em` to use `rem`s
-  margin-bottom: 1rem;
-  // Don't allow content to break outside
-  overflow: auto;
-  // We have @viewport set which causes scrollbars to overlap content in IE11 and Edge, so
+  margin-top: 0; // Reset browser default of `1em` to use `rem`s
+  margin-bottom: 1rem; // Don't allow content to break outside
+  overflow: auto; // We have @viewport set which causes scrollbars to overlap content in IE11 and Edge, so
   // we force a non-overlapping, non-auto-hiding scrollbar to counteract.
   -ms-overflow-style: scrollbar;
 }
@@ -274,7 +256,6 @@ pre {
 //
 // Figures
 //
-
 figure {
   // Apply a consistent margin strategy (matches our type styles).
   margin: 0 0 1rem;
@@ -283,7 +264,6 @@ figure {
 //
 // Images and content
 //
-
 img {
   vertical-align: middle;
   border-style: none; // Remove the border on images inside links in IE 10-.
@@ -296,7 +276,6 @@ svg:not(:root) {
 //
 // Tables
 //
-
 table {
   border-collapse: collapse; // Prevent double borders
 }
@@ -318,7 +297,6 @@ th {
 //
 // Forms
 //
-
 label {
   // Allow labels to use `margin` for spacing.
   display: inline-block;
@@ -411,8 +389,7 @@ fieldset {
   // So we reset that to ensure fieldsets behave more like a standard block element.
   // See https://github.com/twbs/bootstrap/issues/12359
   // and https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
-  min-width: 0;
-  // Reset the default outline behavior of fieldsets so they don't affect page layout.
+  min-width: 0; // Reset the default outline behavior of fieldsets so they don't affect page layout.
   padding: 0;
   margin: 0;
   border: 0;
@@ -454,7 +431,6 @@ progress {
 //
 // Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
 //
-
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -464,7 +440,6 @@ progress {
 // 1. Correct the inability to style clickable types in iOS and Safari.
 // 2. Change font properties to `inherit` in Safari.
 //
-
 ::-webkit-file-upload-button {
   font: inherit; // 2
   -webkit-appearance: button; // 1
@@ -473,7 +448,6 @@ progress {
 //
 // Correct element displays
 //
-
 output {
   display: inline-block;
 }
