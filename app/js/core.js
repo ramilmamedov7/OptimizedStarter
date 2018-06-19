@@ -1,4 +1,9 @@
+"use strict";
+
 $(document).ready(function () {
-  const word = "Ready!";
-  console.log(word);
+    var add = function add(a, b) {
+        return a + b;
+    };
+    var word = "Ready!";
+    console.log(word);
 });
