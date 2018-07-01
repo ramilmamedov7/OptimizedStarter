@@ -14,5 +14,5 @@
   }
 }
 
-@include font-face("Roboto", "../fonts/RobotoRegular/RobotoRegular", normal);
-@include font-face("Roboto", "../fonts/RobotoBold/RobotoBold", bold);
+@include font-face("Roboto-Regular", "../fonts/RobotoRegular/RobotoRegular", normal, normal);
+@include font-face("Roboto-Bold", "../fonts/RobotoBold/RobotoBold", bold, normal);

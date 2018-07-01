@@ -38,17 +38,25 @@ $ gulp
 ```
 
 ### Used Gulp Plugins:
+
+**Tools:**
  - browser-sync
+ - gulp-newer
+ - gulp-util
+ - gulp-notify
+ - gulp-rename
+ - gulp-concat
+ - gulp-imagemin
+ - gulp-htmlmin
+
+**Style utilites:**
  - gulp-sass
  - gulp-uncss
  - gulp-purify-css
  - gulp-cssnano
  - gulp-autoprefixer
  - gulp-clean-css
- - gulp-htmlmin
- - gulp-imagemin
+
+ **Script utilites**
  - gulp-babel
- - gulp-concat
  - gulp-uglify
- - gulp-rename
- - gulp-notify

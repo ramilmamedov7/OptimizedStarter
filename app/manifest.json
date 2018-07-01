@@ -5,18 +5,28 @@
   "description": "",
   "short_name": "",
   "icons": [{
-      "src": "img/favicon/favicon.ico",
-      "sizes": "64x64",
+      "src": "img/favicons/favicon.ico",
+      "sizes": "any",
       "type": "image/x-icon"
     },
     {
-      "src": "img/favicon/apple-touch-icon-180x180.png",
+      "src": "img/favicons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "img/favicons/favicon.png",
+      "sizes": "16x16 32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "img/favicons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }
   ],
-  "scope": "/app",
-  "start_url": "/app/index.html",
+  "scope": "./",
+  "start_url": "./",
   "display": "fullscreen",
   "orientation": "landscape",
   "theme_color": "#000",

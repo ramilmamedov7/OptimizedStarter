@@ -1,7 +1,3 @@
-@at-root {
-  @-ms-viewport { width: device-width; } // stylelint-disable-line at-rule-no-vendor-prefix
-}
-
 @import "mixins/breakpoints";
 @import "mixins/grid-framework";
 @import "mixins/grid";
