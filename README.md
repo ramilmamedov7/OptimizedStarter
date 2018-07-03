@@ -21,11 +21,13 @@ Optimized Starter is a based on jQuery & Bootstrap-4, Swiper, Gulp.
 
 ```
 
-### Setup Local Development Environment - Main terminal Commands
+### Setup Local Development Environment
 
 **1. Make sure you have a recent version of <a href="https://nodejs.org/en/">Node.js</a> installed.**
 
 **2. Make sure you have a <a href="https://gulpjs.com/">Gulp-CLI</a> installed.**
+
+### Main Terminal Commands
 
 **3. To install required dependecies:**
 
