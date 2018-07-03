@@ -1,3 +1,7 @@
+//
+//  Mixin for loading fonts.
+//  Credits: Burbon.
+//
 @mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false) {
   @font-face {
     font-family: $font-family;

@@ -33,7 +33,7 @@ gulp.task('browser-sync', () => {
     notify: false
     // open: false,
     // tunnel: true,
-    // tunnel: "projectmane", //Demonstration page: http://projectmane.localtunnel.me
+    // tunnel: "projectmane", //  Demonstration page: http://projectmane.localtunnel.me
   });
 });
 
@@ -41,10 +41,11 @@ gulp.task('browser-sync', () => {
 //  Task for HTML files
 //  Minifying HTML files and putting them into dist directory...
 gulp.task('html', () => {
-   gulp
+  gulp
     .src('app/**.html')
-    .pipe(htmlmin({collapseWhitespace: true}))  // (Optional)
-    .pipe(gulp.dest('dist'));
+    .pipe(htmlmin({ collapseWhitespace: true })) // (Optional)
+    .pipe(gulp.dest('dist'))
+    .pipe(browsersync.reload({ stream: true }));
 });
 
 
@@ -55,9 +56,12 @@ gulp.task('img', () => {
     .src(paths.imgsrc)
     .pipe(newer(paths.imgdest))
     .pipe(imagemin([imagemin.svgo({
-      plugins: [{ removeViewBox: true }]
-    })],
-    { verbose: true }))
+      plugins: [{
+        removeViewBox: true
+      }]
+    })], {
+      verbose: true
+    }))
     .pipe(gulp.dest(paths.imgdest));
 });
 
@@ -66,8 +70,8 @@ gulp.task('img', () => {
 // Transfering fonts to production directory...
 gulp.task('fonts', () => {
   gulp
-   .src('app/fonts/**/*')
-   .pipe(gulp.dest('dist/fonts'));
+    .src('app/fonts/**/*')
+    .pipe(gulp.dest('dist/fonts'));
 });
 
 
@@ -76,16 +80,20 @@ gulp.task('fonts', () => {
 gulp.task('styles', () => {
   return (
     gulp
-      .src(paths.sass)
-      .pipe(sass({ outputStyle: 'expand' }).on('error', notify.onError()))
-      .pipe(uncss({html: ['app/**.html', 'http://localhost:3000']})) // (Optional)
-      .pipe(purify(['app/**/*.js', 'app/**/*.html'])) // (Optional)
-      .pipe(cssnano())  // (Optional)
-      .pipe(autoprefixer(['last 5 versions']))  // (Optional)
-      .pipe(cleancss({ level: { 1: { specialComments: 0 } } })) // (Optional)
-      .pipe(rename({ suffix: '.min', prefix: '' }))
-      .pipe(gulp.dest('dist/css'))
-      .pipe(browsersync.reload({ stream: true }))
+    .src(paths.sass)
+    .pipe(sass({ outputStyle: 'expand' }))
+    .on('error', message => {
+      gutil.log(gutil.colors.red('[Error]'), message.toString());
+      notify.onError();
+    })
+    .pipe(uncss({ html: ['app/**.html', 'http://localhost:3000'] })) // (Optional)
+    .pipe(purify(['app/**/*.js', 'app/**/*.html'])) // (Optional)
+    .pipe(cssnano()) // (Optional)
+    .pipe(autoprefixer(['last 5 versions'])) // (Optional)
+    .pipe(cleancss({level:{1:{specialComments:0}}})) // (Optional)
+    .pipe(rename({ suffix: '.min', prefix: '' }))
+    .pipe(gulp.dest('dist/css'))
+    .pipe(browsersync.reload({ stream: true }))
   );
 });
 
@@ -94,7 +102,7 @@ gulp.task('styles', () => {
 gulp.task('scripts', () => {
   gulp
     .src(paths.script)
-    .pipe(babel({presets: ['env']}))
+    .pipe(babel({ presets: ['env'] }))
     .pipe(gulp.dest('dist/js/'));
     Scripts();
 });
@@ -110,12 +118,12 @@ Scripts = () => {
     ])
     .pipe(concat('vendors.min.js'))
     .pipe(uglify()) // (Optional)
-    .on('error', (err) => {
-      gutil.log(gutil.colors.red('[Error]'), err.toString());
+    .on('error', message => {
+      gutil.log(gutil.colors.red('[Error]'), message.toString());
     })
     .pipe(gulp.dest('dist/js'))
     .pipe(browsersync.reload({ stream: true }));
-}
+};
 
 
 //  Watchers for html, sass, js, image, font files...

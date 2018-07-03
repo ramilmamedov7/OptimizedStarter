@@ -2,6 +2,8 @@
 @import "mixins";
 //
 // Normalization and Global styling
+// Normalization of HTML elements, to remove styles targeting irrelevant browsers.
+// Credits: Normalize.css.
 //
 *,
 *::before,
@@ -32,8 +34,8 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: $black;
     text-align: left;
+    color: $black;
     background-color: $white;
 }
 
@@ -53,6 +55,22 @@ h6 {
 p {
     margin-top: 0;
     margin-bottom: 1rem;
+}
+
+//
+// Lists
+//
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+// Bold
+b,
+strong {
+  font-weight: bolder; // Add the correct font weight in Chrome, Edge, and Safari
 }
 
 //
@@ -77,6 +95,12 @@ textarea {
     outline: none;
 }
 
+textarea {
+    overflow: auto; // Remove the default vertical scrollbar in IE.
+    // Textareas should really only resize vertically so they don't break their (horizontal) containers.
+    resize: vertical;
+}
+
 //
 // Remove the default `border-radius` that macOS Chrome adds.
 //
@@ -87,6 +111,15 @@ button {
         outline: 1px dotted; // Work around a Firefox/IE bug where the transparent `button` background
         outline: 5px auto; // results in a loss of the default `button` focus styles.
     }
+}
+
+//
+// Images and content
+//
+img {
+    vertical-align: middle;
+    border-style: none; // Remove the border on images inside links in IE 10-.
+    @include img-fluid(); // Optional
 }
 
 //
