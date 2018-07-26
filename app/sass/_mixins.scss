@@ -1,61 +1,67 @@
-//@include list-s-none;
-// Unstyling lists...
-//
-@mixin list-s-none {
-    padding-left: 0;
-    list-style: none;
-}
-
-// @include clearfix;
-// Clearfix...
-//
-@mixin clearfix() {
-    &::after {
-        display: block;
-        clear: both;
-        content: "";
+//  Mixin for loading fonts.
+//  Credits: Burbon.
+//  @include font-face();
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false) {
+    @font-face {
+      font-family: $font-family;
+      font-weight: $weight;
+      font-style: $style;
+      @if $asset-pipeline==true {
+        src:
+        local("#{$font-family}"),
+        url("#{$file-path}.woff") format("woff"),
+        url("#{$file-path}.woff2") format("woff2");
+      }
+      @else {
+        src:
+        local("#{$font-family}"),
+        url("#{$file-path}.woff") format("woff"),
+        url("#{$file-path}.woff2") format("woff2");
+      }
     }
 }
 
-// @include pseudo;
-// Pseudo elements ::before, ::after...
+//  Mixin for generating ::selection rules for selected text.
 //
-@mixin pseudo($display: block, $pos: absolute, $content: '') {
-    content: $content;
-    display: $display;
-    position: $pos;
-}
-
-// @include selection;
-// Selection with autoprefixs...
-//
+//  @include selection;
 @mixin selection {
-    ::-moz-selection {
-        @content;
-    }
-    ::selection {
-        @content;
-    }
+    ::-moz-selection { @content; }
+    ::selection { @content; }
 }
 
-// @include placeholder;
-// Placeholder with autoprefixs...
+//  Mixin for styling placeholders in HTML5 form elements.
 //
+//  @include placeholder;
 @mixin placeholder {
-    &.placeholder {
-        @content;
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+// Mixin to customize scrollbars. [Beware, this does not work in all browsers.]
+// Credits: Hugo Giraudel.
+// @include scrollbars();
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+    // For Google Chrome
+    ::-webkit-scrollbar {
+        width:  $size;
+        height: $size;
     }
-    &:-moz-placeholder {
-        @content;
+
+    ::-webkit-scrollbar-thumb {
+        background-color: $foreground-color;
     }
-    &::-moz-placeholder {
-        @content;
+
+    ::-webkit-scrollbar-track {
+        background-color: $background-color;
     }
-    &:-ms-input-placeholder {
-        @content;
-    }
-    &::-webkit-input-placeholder {
-        @content;
+
+    // For Internet Explorer
+    body {
+      scrollbar-face-color: $foreground-color;
+      scrollbar-track-color: $background-color;
     }
 }
 
@@ -63,7 +69,7 @@
 // Reseting text styles...
 //
 @mixin reset-text {
-    font-family: $font-r, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: $default-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: 400;
     font-style: normal;
     //
@@ -82,14 +88,6 @@
     white-space: normal;
 }
 
-// @include truncate;
-// Truncate text...
-@mixin truncate() {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 // @include sr-only;
 // Only display content to screen readers...
 @mixin sr-only {
@@ -104,8 +102,47 @@
     border: 0;
 }
 
-// @include centering;
+// @include truncate;
+// Truncate text...
+@mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+//  Mixin for unstyling lists.
+//
+//  @include list-s-none;
+@mixin list-s-none {
+    padding-left: 0;
+    list-style: none;
+}
+
+
+
+// Mixin for the Pseudo elements ::before, ::after...
+//
+// @include pseudo();
+@mixin pseudo($content: '', $display: block, $pos: absolute) {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+// Mixin for the element to self-clears its children.
+//
+// @include clearfix;
+@mixin clearfix {
+    &::after {
+        display: block;
+        clear: both;
+        content: "";
+    }
+}
+
 // Centering elements vertically, horizontally, or for both positions...
+//
+// @include centering;
 @mixin centering($position) {
     position: absolute;
     @if $position=='vertical' {
@@ -129,8 +166,9 @@
     }
 }
 
-// @include triangle;
 // $direction: up, down, left, right...
+//
+// @include triangle;
 @mixin triangle($direction, $size: 6px, $color: #222) {
     content: '';
     display: block;

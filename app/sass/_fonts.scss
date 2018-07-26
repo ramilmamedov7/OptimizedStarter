@@ -1,22 +1,8 @@
-//
-//  Mixin for loading fonts.
-//  Credits: Burbon.
-//
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false) {
-  @font-face {
-    font-family: $font-family;
-    font-weight: $weight;
-    font-style: $style;
-    @if $asset-pipeline==true {
-      src: url("#{$file-path}.woff") format("woff"),
-      url("#{$file-path}.woff2") format("woff2");
-    }
-    @else {
-      src: url("#{$file-path}.woff") format("woff"),
-      url("#{$file-path}.woff2") format("woff2");
-    }
-  }
-}
+@import "mixins";
 
-@include font-face("Roboto-Regular", "../fonts/RobotoRegular/RobotoRegular", normal, normal);
-@include font-face("Roboto-Bold", "../fonts/RobotoBold/RobotoBold", bold, normal);
+@include font-face("Roboto-Thin", "../fonts/RobotoRegular/RobotoThin");
+@include font-face("Roboto-Light", "../fonts/RobotoRegular/RobotoLight");
+@include font-face("Roboto-Regular", "../fonts/RobotoRegular/RobotoRegular");
+@include font-face("Roboto-Medium", "../fonts/RobotoRegular/RobotoMedium");
+@include font-face("Roboto-Bold", "../fonts/RobotoBold/RobotoBold");
+@include font-face("Roboto-Black", "../fonts/RobotoBold/RobotoBlack");

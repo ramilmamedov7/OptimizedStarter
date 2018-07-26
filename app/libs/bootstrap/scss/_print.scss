@@ -2,11 +2,11 @@
 
 // Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css
 
-// ==========================================================================
+// ==================================================================================
 // Print styles.
 // Inlined to avoid the additional HTTP request:
 // http://www.phpied.com/delay-loading-your-print-css/
-// ==========================================================================
+// ==================================================================================
 
 @if $enable-print-styles {
   @media print {
@@ -51,7 +51,7 @@
     }
     pre,
     blockquote {
-      border: $border-width solid #999;   // Bootstrap custom code; using `$border-width` instead of 1px
+      border: $border-width solid #999; // Bootstrap custom code; using `$border-width` instead of 1px
       page-break-inside: avoid;
     }
 
