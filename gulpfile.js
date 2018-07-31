@@ -7,7 +7,10 @@ const gulp = require('gulp'),
       rename = require('gulp-rename'),
       concat = require('gulp-concat'),
       imagemin = require('gulp-imagemin'),
+      // HTML
+      rigger = require('gulp-rigger'),
       htmlmin = require('gulp-htmlmin'),
+      htmlbeautify = require('gulp-html-beautify'),
       // Styles
       sass = require('gulp-sass'),
       cssnano = require('cssnano'),
@@ -46,16 +49,42 @@ gulp.task('clean', () => {
   return next();
 });
 
-
 //  Task for HTML files
-//  Minifying HTML files and putting them into dist directory...
+//  Concatenation partials of HTML file like (Header, Footer) and Minifying-Beautifying them.
 gulp.task('html', () => {
+  let options = {
+    "indent_size": 4,
+    "indent_char": " ",
+    "eol": "\n",
+    "indent_level": 0,
+    "indent_with_tabs": false,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 10,
+    "jslint_happy": false,
+    "space_after_anon_function": false,
+    "brace_style": "collapse",
+    "keep_array_indentation": false,
+    "keep_function_indentation": false,
+    "space_before_conditional": true,
+    "break_chained_methods": false,
+    "eval_code": false,
+    "unescape_strings": false,
+    "wrap_line_length": 0,
+    "wrap_attributes": "auto",
+    "wrap_attributes_indent_size": 4,
+    "end_with_newline": false
+  };
   gulp
     .src(paths.htmlSrc)
-    .pipe(htmlmin({ collapseWhitespace: true })) // (Optional)
-    .pipe(gulp.dest('./dist'))
+    .on('error', function (err) {
+      console.log(err)
+      this.emit('end')
+    })
+    .pipe(rigger())
+    .pipe(htmlbeautify(options))
+    // .pipe(htmlmin({ collapseWhitespace: true })) // (Optional)
+    .pipe(gulp.dest('./dist/'))
 });
-
 
 //  Task for Images
 //  Minifying Images files and putting them into dist directory and clearing gulp paths cashing...
@@ -73,15 +102,13 @@ gulp.task('img', () => {
     .pipe(gulp.dest('./dist/img/'));
 });
 
-
 // Task for Fonts
-// Transfering fonts to production directory...
+// Transferring fonts to production directory...
 gulp.task('font', () => {
   gulp
     .src(paths.fontSrc)
     .pipe(gulp.dest('./dist/fonts'));
 });
-
 
 //  Task for styles
 //  Compiling SASS, cutting unused CSS modules, adding prefixes, minifying and renaming the final file...
@@ -141,15 +168,13 @@ Scripts = () => {
     .pipe(browserSync.reload({ stream: true }));
 };
 
-
 //  Watchers for html, sass, js, image, font files...
 gulp.task('watch', ['style', 'script', 'html', 'font', 'img', 'serve'], () => {
-  gulp.watch('./app/*.html',                          ['html']);
+  gulp.watch('./app/**/*.html',                       ['html']);
   gulp.watch(paths.scssSrc,                           ['style']);
   gulp.watch(['./app/libs/**/*.js', paths.scriptSrc], ['script']);
   gulp.watch(paths.htmlSrc, browserSync.reload);
 });
-
 
 //  Default task
 gulp.task('default', ['watch']);
