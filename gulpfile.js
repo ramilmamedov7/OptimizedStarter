@@ -22,11 +22,12 @@ const gulp = require('gulp'),
       uglify = require('gulp-uglify');
 
 const paths = {
-  htmlSrc:    './app/*.html',
-  scssSrc:    './app/sass/**/*.scss',
-  scriptSrc:  './app/js/core.js',
-  imgSrc:     './app/img/**/*.{jpg,jpeg,png,gif,svg}',
-  fontSrc:    './app/fonts/**/*.{woff,woff2,eot,svg,ttf}'
+  htmlSrc:        './app/*.html',
+  scssSrc:        './app/sass/**/*.scss',
+  scriptSrc:      './app/js/core.js',
+  imgSrc:         './app/img/**/*.{jpg,jpeg,png,gif,svg}',
+  rootFilesSrc:   ['manifest.json', 'favicon.ico', 'browserconfig.xml'],
+  fontSrc:        './app/fonts/**/*'
 };
 
 //  Task for live reload
@@ -102,13 +103,26 @@ gulp.task('img', () => {
     .pipe(gulp.dest('./dist/img/'));
 });
 
-// Task for Fonts
-// Transferring fonts to production directory...
-gulp.task('font', () => {
+// Task for transferring.
+// Transferring root directory files and fonts to production directory...
+gulp.task('spit', () => {
   gulp
-    .src(paths.fontSrc)
-    .pipe(gulp.dest('./dist/fonts'));
+    .src([
+      './app/manifest.json',
+      './app/favicon.ico',
+      './app/browserconfig.xml'
+    ])
+    .pipe(gulp.dest('./dist/'));
+    Fonts();
 });
+
+Fonts = () => {
+  return (
+    gulp
+      .src(paths.fontSrc)
+      .pipe(gulp.dest('./dist/fonts/'))
+  )
+};
 
 //  Task for styles
 //  Compiling SASS, cutting unused CSS modules, adding prefixes, minifying and renaming the final file...
@@ -170,8 +184,8 @@ Scripts = () => {
   )
 };
 
-//  Watchers for html, sass, js, image, font files...
-gulp.task('watch', ['style', 'script', 'html', 'font', 'img', 'serve'], () => {
+//  Watchers for html, sass, js, image, root-files files...
+gulp.task('watch', ['style', 'script', 'html', 'spit', 'img', 'serve'], () => {
   gulp.watch('./app/**/*.html',                       ['html']);
   gulp.watch(paths.scssSrc,                           ['style']);
   gulp.watch(['./app/libs/**/*.js', paths.scriptSrc], ['script']);

@@ -1,0 +1,40 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "name": "Optimize Starter",
+  "description": "Optimized Starter based on jQuery & Bootstrap-4, Swiper, Gulp.",
+  "short_name": "Starter",
+  "icons": [{
+      "src": "img/favicons/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "img/favicons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "img/favicons/fav16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "img/favicons/fav32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "img/favicons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "scope": "./",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "#000",
+  "background_color": "#fff",
+  "screenshots": [{}]
+}
