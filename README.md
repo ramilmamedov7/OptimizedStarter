@@ -29,7 +29,7 @@ Optimized Starter is a based on jQuery & Bootstrap-4, Swiper, Gulp.
 
 ### Main Terminal Commands
 
-**3. To install required dependecies:**
+**3. To install required dependencies:**
 
 ```bash
 #!/bin/bash
@@ -55,24 +55,29 @@ or
 **Tools:**
 
 - browser-sync
+- del
 - gulp-newer
 - gulp-util
 - gulp-notify
 - gulp-rename
 - gulp-concat
 - gulp-imagemin
+
+**HTML utilities:**
+
 - gulp-htmlmin
+- gulp-rigger
+- gulp-html-beautify
 
-**Style utilites:**
+**Style utilities:**
 
+- autoprefixer
+- cssnano
 - gulp-sass
+- gulp-postcss
 - gulp-uncss
-- gulp-purify-css
-- gulp-cssnano
-- gulp-autoprefixer
-- gulp-clean-css
 
- **Script utilites:**
+ **Script utilities:**
 
 - gulp-babel
 - gulp-uglify

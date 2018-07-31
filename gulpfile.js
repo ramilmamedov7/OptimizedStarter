@@ -44,7 +44,7 @@ gulp.task('serve', () => {
 });
 
 //  Task for removing dist folder
-gulp.task('clean', () => {
+gulp.task('clean', next => {
   del.sync('./dist');
   return next();
 });
@@ -76,13 +76,13 @@ gulp.task('html', () => {
   };
   gulp
     .src(paths.htmlSrc)
-    .on('error', function (err) {
-      console.log(err)
-      this.emit('end')
+    .on('error', message => {
+      gutil.log(gutil.colors.red('[Error]'), message.toString());
+      notify.onError();
     })
     .pipe(rigger())
     .pipe(htmlbeautify(options))
-    // .pipe(htmlmin({ collapseWhitespace: true })) // (Optional)
+//  .pipe(htmlmin({ collapseWhitespace: true })) // (Optional)
     .pipe(gulp.dest('./dist/'))
 });
 
@@ -127,16 +127,16 @@ gulp.task('style', () => {
   ];
   return (
     gulp
-    .src(paths.scssSrc)
-    .pipe(sass({ outputStyle: 'expand' }))
-    .pipe(postcss(plugins))
-    .on('error', message => {
-      gutil.log(gutil.colors.red('[Error]'), message.toString());
-      notify.onError();
-    })
-    .pipe(rename({ suffix: '.min', prefix: '' }))
-    .pipe(gulp.dest('./dist/css'))
-    .pipe(browserSync.reload({ stream: true }))
+      .src(paths.scssSrc)
+      .pipe(sass({ outputStyle: 'expand' }))
+      .pipe(postcss(plugins))
+      .on('error', message => {
+        gutil.log(gutil.colors.red('[Error]'), message.toString());
+        notify.onError();
+      })
+      .pipe(rename({ suffix: '.min', prefix: '' }))
+      .pipe(gulp.dest('./dist/css'))
+      .pipe(browserSync.reload({ stream: true }))
   );
 });
 
@@ -151,21 +151,23 @@ gulp.task('script', () => {
 });
 
 Scripts = () => {
-  return gulp
-    .src([
-      './app/libs/jquery/jquery.min.js',
-      './app/libs/bootstrap/popper.min.js',
-      './app/libs/bootstrap/bootstrap.min.js',
-      './app/libs/swiper/swiper.min.js',
-      './dist/js/core.js'
-    ])
-    .pipe(concat('vendors.min.js'))
-    .pipe(uglify()) // (Optional)
-    .on('error', message => {
-      gutil.log(gutil.colors.red('[Error]'), message.toString());
-    })
-    .pipe(gulp.dest('./dist/js'))
-    .pipe(browserSync.reload({ stream: true }));
+  return (
+    gulp
+      .src([
+        './app/libs/jquery/jquery.min.js',
+        './app/libs/bootstrap/popper.min.js',
+        './app/libs/bootstrap/bootstrap.min.js',
+        './app/libs/swiper/swiper.min.js',
+        './dist/js/core.js'
+      ])
+      .pipe(concat('vendors.min.js'))
+      .pipe(uglify()) // (Optional)
+      .on('error', message => {
+        gutil.log(gutil.colors.red('[Error]'), message.toString());
+      })
+      .pipe(gulp.dest('./dist/js'))
+      .pipe(browserSync.reload({ stream: true }))
+  )
 };
 
 //  Watchers for html, sass, js, image, font files...
