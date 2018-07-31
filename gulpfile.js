@@ -19,10 +19,10 @@ const gulp = require('gulp'),
       uglify = require('gulp-uglify');
 
 const paths = {
+  htmlSrc:    './app/*.html',
   scssSrc:    './app/sass/**/*.scss',
   scriptSrc:  './app/js/core.js',
   imgSrc:     './app/img/**/*.{jpg,jpeg,png,gif,svg}',
-  imgDest:    './dist/img',
   fontSrc:    './app/fonts/**/*.{woff,woff2,eot,svg,ttf}'
 };
 
@@ -40,9 +40,10 @@ gulp.task('serve', () => {
   });
 });
 
+//  Task for removing dist folder
 gulp.task('clean', () => {
-  return del(['./dist']);
-  return del(['./dist']);
+  del.sync('./dist');
+  return next();
 });
 
 
@@ -50,7 +51,7 @@ gulp.task('clean', () => {
 //  Minifying HTML files and putting them into dist directory...
 gulp.task('html', () => {
   gulp
-    .src('./app/*.html')
+    .src(paths.htmlSrc)
     .pipe(htmlmin({ collapseWhitespace: true })) // (Optional)
     .pipe(gulp.dest('./dist'))
 });
@@ -61,7 +62,7 @@ gulp.task('html', () => {
 gulp.task('img', () => {
   gulp
     .src(paths.imgSrc)
-    .pipe(newer(paths.imgDest))
+    .pipe(newer('./dist/img/'))
     .pipe(imagemin([imagemin.svgo({
       plugins: [{
         removeViewBox: true
@@ -69,7 +70,7 @@ gulp.task('img', () => {
     })], {
       verbose: true
     }))
-    .pipe(gulp.dest(paths.imgDest));
+    .pipe(gulp.dest('./dist/img/'));
 });
 
 
@@ -143,10 +144,10 @@ Scripts = () => {
 
 //  Watchers for html, sass, js, image, font files...
 gulp.task('watch', ['style', 'script', 'html', 'font', 'img', 'serve'], () => {
-  gulp.watch('./app/*.html', ['html']);
-  gulp.watch(paths.scssSrc, ['style']);
+  gulp.watch('./app/*.html',                          ['html']);
+  gulp.watch(paths.scssSrc,                           ['style']);
   gulp.watch(['./app/libs/**/*.js', paths.scriptSrc], ['script']);
-  gulp.watch('./app/*.html', browserSync.reload);
+  gulp.watch(paths.htmlSrc, browserSync.reload);
 });
 
 
