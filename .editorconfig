@@ -6,10 +6,6 @@ end_of_line = lf
 insert_final_newline = false
 trim_trailing_whitespace = true
 
-[*.{css, scss, js, package.json}]
+[*.{css, scss, js, package.json, html}]
 indent_style = space
 indent_size = 2
-
-[*.html]
-indent_style = space
-indent_size = 4

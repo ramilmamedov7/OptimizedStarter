@@ -17,6 +17,8 @@ const gulp = require('gulp'),
       autoprefixer = require('autoprefixer'),
       postcss = require('gulp-postcss'),
       uncss = require('postcss-uncss'),
+      purify = require('gulp-purifycss'),
+      cleanCSS = require('gulp-clean-css'),
       // JavaScripts
       babel = require('gulp-babel'),
       uglify = require('gulp-uglify');
@@ -39,6 +41,7 @@ gulp.task('serve', () => {
     },
     notify: false,
     open: false,
+    port: 3030,
     // tunnel: true,
     // tunnel: "projectmane", //  Demonstration page: http://projectmane.localtunnel.me
   });
@@ -135,14 +138,16 @@ gulp.task('style', () => {
       minifyFontValues: false,
     }),
     uncss({
-      html: ['./app/*.html'],
-      ignore: ['.active']
+      html: ['./dist/index.html'],
+      ignore: ['.fade', '.active']
     }),
   ];
   return (
     gulp
       .src(paths.scssSrc)
       .pipe(sass({ outputStyle: 'expand' }))
+      .pipe(purify(['./app/**/*.js', './app/**/*.html']))
+      .pipe(cleanCSS({compatibility: "ie8"}))
       .pipe(postcss(plugins))
       .on('error', message => {
         gutil.log(gutil.colors.red('[Error]'), message.toString());

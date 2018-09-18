@@ -17,6 +17,8 @@
     "gulp-babel": "^7.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-html-beautify": "^1.0.1",
+    "gulp-purifycss": "^0.2.0",
+    "gulp-clean-css": "^3.10.0",
     "gulp-htmlmin": "^4.0.0",
     "gulp-imagemin": "^4.1.0",
     "gulp-newer": "^1.4.0",
